@@ -21,11 +21,11 @@ window.addEventListener( 'load', () => {
             
         }
         if(sessionStorage.videoLink==""){
-            document.getElementById('have-link').hidden = true;
+            document.getElementById('have-link').style.display = "none";
             console.log("rer",sessionStorage.videoLink);
             document.getElementById('dont-have-link').hidden = false;
         }else{
-            document.getElementById('dont-have-link').hidden = true;
+            document.getElementById('dont-have-link').style.display = "none";
             document.getElementById('ppt-link').src = sessionStorage.videoLink;
             document.getElementById('have-link').hidden = false;
         }

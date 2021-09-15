@@ -13,7 +13,7 @@ from flask import Flask, render_template, request
 from gevent.pywsgi import WSGIServer
 from flask import send_from_directory
 from pyngrok import ngrok
-from doodle_generator import doodle , doodle_2_vid
+from doodle_generator import doodle , doodle_2_vid, download_doodle_dataset
 def create_app():
     app = Flask(__name__)
 
@@ -49,6 +49,7 @@ PORT = int(os.environ.get("PORT", 8000))
 img_folder = "frontend/src/assets/images"
 vid_folder = "frontend/src/assets/video"
 doodle_folder = "frontend/src/assets/doodle"
+doodle_dataset_folder = "frontend/src/assets/doodle_dataset"
 
 @app.route('/upload_file', methods = ['POST'])
 def get_file():
@@ -57,6 +58,9 @@ def get_file():
         path = ("ppt")
         f.save(path)
         
+        if not os.path.isdir(doodle_dataset_folder):
+            download_doodle_dataset()
+
         ppt_ex = extract_ppt.data_extracter()
         # pre_pro = text_processing.process_text()
 

@@ -4,20 +4,32 @@ nlp = spacy_universal_sentence_encoder.load_model('en_use_lg')
 qd = QuickDrawData()
 from quickdraw import QuickDrawDataGroup
 import datetime
+import os
+import shutil
+
 def doodle(text):
     doc_1 = nlp(text)
     score = {}
     for a in list(qd.drawing_names):
         doc_2 = nlp(a)
         score[a] = doc_1.similarity(doc_2)
-    cat = sorted(score)
-    doodle_cat = "bird"
-    ants = QuickDrawDataGroup(doodle_cat)
-    ant = ants.get_drawing()
-    name = datetime.datetime.now().strftime("%Y_%m_%d-%I:%M:%S_%p")
-    ant.image.save(f"frontend/src/assets/doodle/{name}.jpg")
+    # cat = sorted(score)   # not used?
+    ls = sorted(score.items(), key = lambda kv:kv[1], reverse=True)
+    object = ls[0][0]
 
-import os
+    # ants = QuickDrawDataGroup(match)
+    # ant = ants.get_drawing()
+    name = datetime.datetime.now().strftime("%Y_%m_%d-%I:%M:%S_%p")
+    # ant.image.save(f"frontend/src/assets/doodle/{name}.jpg")
+    shutil.copy2(f"frontend/src/assets/doodle_dataset/{object}.jpg", f"frontend/src/assets/doodle/{name}.jpg")
+
+def download_doodle_dataset():
+    for object in qd.drawing_names:
+        qd_img = QuickDrawDataGroup(object)
+        ant = qd_img.get_drawing()
+        ant.image.save(f"frontend/src/assets/doodle_dataset/{object}.jpg")
+
+
 import cv2
 from PIL import Image
 
@@ -80,6 +92,8 @@ class doodle_2_vid():
         video = cv2.VideoWriter(video_name, 0, 1, (width, height))
 
         for image in images:
+            # choose only text wali images
+
             video.write(cv2.imread(os.path.join(image_folder, image)))
 
         cv2.destroyAllWindows()

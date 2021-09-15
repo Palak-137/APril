@@ -1,7 +1,7 @@
 
 from sys import path
-# from deep_daze import Imagine
-# from deep_daze.deep_daze import open_folder
+from deep_daze import Imagine
+from deep_daze.deep_daze import open_folder
 from nltk.corpus.reader.chasen import test
 # import torch
 import datetime
@@ -15,21 +15,21 @@ class generate_images:
         self.path = path
 
     def generate_gans(self,text):
-        # try:
-            # generator = Imagine(text=text,
-            #                             open_folder = self.path,
-            #                             image_width=512,
-            #                             num_layers=16,
-            #                             batch_size=1,
-            #                             # save_every=4,
-            #                             # save_progress=True,
-            #                             save_date_time=True,
-            #                             # save_video=True,
-            #                             gradient_accumulate_every=16
-            #                             )
-            # return "Generated"
-        # except Exception as e:       
-        #     return str(e)
+        try:
+            generator = Imagine(text=text,
+                                        open_folder = self.path,
+                                        image_width=512,
+                                        num_layers=16,
+                                        batch_size=1,
+                                        # save_every=4,
+                                        # save_progress=True,
+                                        save_date_time=True,
+                                        # save_video=True,
+                                        gradient_accumulate_every=16
+                                        )
+            return "Generated"
+        except Exception as e:       
+            return str(e)
         pass
     
     def generate_deepAi(self,text):

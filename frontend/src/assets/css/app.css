@@ -1,3 +1,7 @@
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+
 .chat-col{
     right: -100vw;
     bottom: 0;
@@ -156,13 +160,13 @@
 .record-option{
     height: 200px;
     border-radius: 10%;
-    border: 1px solid #05264c;
+    border: 1px solid #0e7af5f6;
     cursor: pointer;
     padding: 10px;
     vertical-align: middle;
 }
 .navbar{
-    background-color: #05264c;
+    background-color: #0e7af5f6!important;
 }
 
 
@@ -182,7 +186,7 @@
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
-    border: 1px solid #05264c;
+    border: 1px solid #0e7af5f6;
     width: 80%;
 }
 
@@ -235,11 +239,13 @@
 }
 
 #output {
-    background-color:#F9F9F9;
+    height: 300px;
     padding:10px;
     width: 100%;
-    margin-top:20px;
+    margin: auto;
+    margin-top:25px;
     line-height:30px;
+   
 }
 .hide {
     display:none;
@@ -262,7 +268,7 @@
     align-items: center;
     justify-content: center;
     display: flex;
-    color: #073f80;
+    color: #0e7af5f6;
     font-weight: 900;
     font-family: 'Otomanopee One', sans-serif;
 }
@@ -281,11 +287,10 @@
     font-family: 'Otomanopee One', sans-serif;
 }
 .generated-text{
-    background-color: rgb(209, 207, 207);
-    width: 600px;
+    width: auto;
     height: 675px;
     padding: 30px;
-    margin-top: 10px;
+    margin-top: 30px!important;
     align-self: center
 }
 
@@ -307,7 +312,7 @@ body {
   justify-content: center;
   margin: 0;
   min-height: 100vh;
-  background: #fff;
+  background: #0e7af518;
 }
 
 button {
@@ -371,4 +376,24 @@ button.learn-more:active::before {
     justify-self: center;
     display: block;
     
+}
+.doodle-video{
+    margin: auto;
+    padding: 10px;
+    width: auto;
+    height: 100%;
+    background-color: #0e7af521!important;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.text-convert{
+    width: auto;
+    height: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: larger;
+    align-items: center;
+    background-color: #0e7af521!important;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }

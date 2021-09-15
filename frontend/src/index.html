@@ -12,6 +12,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Otomanopee+One&display=swap" rel="stylesheet">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+
 
         <script src='/socket.io/socket.io.js'></script>
         <script type="module" src='assets/js/rtc.js'></script>
@@ -78,7 +82,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col video-img">
-                        <img src="./assets//video-call.png">
+                        <img src="./assets//video-call.png" width="70%" height="80%">
                     </div>
                     <div class="col text-area">
                         <div class="des">
@@ -109,8 +113,8 @@
                 </div>
 
                 <div class="col-12 col-md-4 offset-md-4 mb-3">
-                    <label for="video-link">Link for the video</label>
-                    <input type="text" id='video-link' class="form-control rounded-0" placeholder="Link for video to be displayed" />
+                    <label for="video-link">Link for the PPT</label>
+                    <input type="text" id='video-link' class="form-control rounded-0" placeholder="Link for PPT to be displayed" />
                 </div>
 
                 <div class="col-12 col-md-4 offset-md-4 mb-3">
@@ -144,23 +148,39 @@
                 </div>
             </div>
         </div>
-
-
         
-        <div class="container-fluid room-comm" hidden>
+
+
+
+        <div class="container-fluid room-comm" id="have-link" hidden>
             <div class="row">
                 <video class="local-video mirror-mode" id='local' volume='0' autoplay muted></video>
             </div>
             <div class="row">
                 <div class="col">
-                    <video src="/assets/video.mp4" autoplay controls type="video/mp4" class="video-class" ></video>
-                    <div class="container-fluid">
-                        <video src="./assets/video/doodle.mp4" autoplay controls type="video/mp4"  id="doodle-image">
+                    <div class="container-fluid mt-5"> 
+                    <iframe
+                        src="../../frontend/sampleppt.pdf"
+                        width="100%"
+                        height="650px"
+                        frameBorder="0"
+                        class="mt-3" id="ppt-link"
+                    >
+                    </iframe>
                     </div>
                 </div>
-                <div class="col generated-text">
-                    
-                    <div id="output" class="hide"></div>
+                <div class="col-md-4 generated-text mb-5">
+                    <div class="row dflex flex-column mt-2 mb-5">
+                        <div class="col doodle-video mb-3">
+                            <h4 class="text-center bold-text mb-2">WhiteBoard</h4>
+                            <video src="./assets/video.mp4" type="video/mp4" controls="true" autoplay width="100%" height="100%"></video>
+                        </div>
+                        <div class="col text-convert mt-5">
+                            <h4 class="text-center bold-text mb-2">Teacher's voice</h4>
+                            <div id="output"></div>
+                        </div>
+                    </div>
+                   
                 </div>
             </div>
         
@@ -183,5 +203,53 @@
                 </div>
             </div>
         </div>
+
+
+
+    
+        <div class="container-fluid room-comm" id="dont-have-link" hidden>
+            <div class="row">
+                <video class="local-video mirror-mode" id='local' volume='0' autoplay muted></video>
+            </div>
+            <div class="row">
+                <div class="col align-items-center d-flex mt-5 ">
+                    <div class="container-fluid mt-5 " style="width: auto; height: 90%;"> 
+                        <div class="doodle-video">
+                            <h4 class="text-center bold-text">WhiteBoard</h4>
+                            <video src="./assets/video.mp4" type="video/mp4" controls="true" autoplay width="100%" height="100%"></video>
+                        </div>
+                    </div>
+                </div>
+                <div class="col generated-text">
+                        <div class="col text-convert mt-5">
+                            <h4 class="text-center bold-text mb-2">Teacher's voice</h4>
+                            <div id="output1"></div>
+                    </div>
+                   
+                </div>
+            </div>
+        
+        
+            <div class="row">
+                <div class="col-md-12 main" id='main-section'>                    
+
+                </div>
+
+                <div class="col-md-3 chat-col d-print-none mb-2 bg-info" id='chat-pane' hidden>
+                    <div class="row">
+                        <div class="col-12 text-center h2 mb-3">CHAT</div>
+                    </div>
+
+                    <div id='chat-messages'></div>
+
+                    <div class="row">
+                        <textarea id='chat-input' class="form-control rounded-0 chat-box border-info" rows='3' placeholder="Type here..."></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            
+        </script>
     </body>
 </html>

@@ -1,7 +1,7 @@
 import h from './helpers.js';
 
 
-window.addEventListener( 'load', () => {
+window.addEventListener( 'load', setTimeout(() => {
     const room = h.getQString( location.href, 'room' );
     const username = sessionStorage.getItem( 'username' );
 
@@ -18,7 +18,16 @@ window.addEventListener( 'load', () => {
 
         for ( let i = 0; i < commElem.length; i++ ) {
             commElem[i].attributes.removeNamedItem( 'hidden' );
+            
         }
+        if(sessionStorage.videoLink==""){
+            document.getElementById('have-link').hidden = true;
+            document.getElementById('dont-have-link').hidden = false;
+        }else{
+            document.getElementById('dont-have-link').hidden = true;
+            document.getElementById('have-link').hidden = false;
+        }
+
 
         var pc = [];
 
@@ -99,7 +108,8 @@ window.addEventListener( 'load', () => {
                 h.addChat( data, 'remote' );
             } );
 
-            socket.on( 'voiceText', ( data ) => {
+            socket.on( 'voiceText', async ( data ) => {
+                console.log("transmitted",data);
                 h.addtext( data, 'remote' );
             } );
 
@@ -134,7 +144,10 @@ window.addEventListener( 'load', () => {
 
 
         function sendText(text) {
-            let data = text;
+            let data = {
+                text: text,
+                room: room,
+            };
 
             //emit chat message
             socket.emit( 'voiceText', data );
@@ -145,12 +158,12 @@ window.addEventListener( 'load', () => {
 
 
         //dynamicly change image
-        function changeImage(){
-            document.querySelector('#doodle-image').src = 'assets/video/doodle.mp4';
-        }
-        var intervalId = window.setInterval(function(){
-            changeImage();
-          }, 15000);
+        // function changeImage(){
+        //     document.querySelector('#doodle-image').src = 'assets/video/doodle.mp4';
+        // }
+        // var intervalId = window.setInterval(function(){
+        //     changeImage();
+        //   }, 15000);
 
 
 
@@ -418,6 +431,7 @@ window.addEventListener( 'load', () => {
         function runSpeechRecognition() {
 		        // get output div reference
 		        var output = document.getElementById("output");
+                var output = document.getElementById("output1");
 		        // get action element reference
 		        var action = document.getElementById("action");
                 // new speech recognition object
@@ -426,7 +440,7 @@ window.addEventListener( 'load', () => {
             
                 // This runs when the speech recognition service starts
                 recognition.onstart = function() {
-                    action.innerHTML = "<small>listening, please speak...</small>";
+                    console.log("start the conversion");
                 };
                 
                 recognition.onspeechend = function() {
@@ -438,8 +452,9 @@ window.addEventListener( 'load', () => {
                 recognition.onresult = function(event) {
                     var transcript = event.results[0][0].transcript;
 
-                    output.innerHTML = "<b>Text:</b> " + transcript + "<br/>"
+                    output.innerHTML = "" + transcript + "<br/>"
                     output.classList.remove("hide");
+                    
                     sendText(transcript);
 
                     var myHeaders = new Headers();
@@ -570,4 +585,5 @@ window.addEventListener( 'load', () => {
             }
         } );
     }
-} );
+},1000).
+ );

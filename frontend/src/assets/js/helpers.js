@@ -170,15 +170,18 @@ export default {
     addtext(data,senderType){
          let textBox = document.querySelector( '#output' );
          let senderName = 'You';
-
-        let text = document.createElement( 'div' );
-        text.innerHTML = data;
+        console.log("addtext function",data,senderType);
+        let text = document.createElement( 'p' );
+        text.innerHTML = data.text;
 
         textBox.appendChild(text);
         if ( this.pageHasFocus ) {
             text.scrollIntoView();
         }
+        
+        
         console.log("data socket",data);
+        
     },
 
 

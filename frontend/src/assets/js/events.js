@@ -74,7 +74,6 @@ window.addEventListener( 'load', () => {
             //empty the values
             document.querySelector( '#room-name' ).value = '';
             document.querySelector( '#your-name' ).value = '';
-
             
 
         }
@@ -88,7 +87,7 @@ window.addEventListener( 'load', () => {
     //When the 'Enter room' button is clicked.
     document.getElementById( 'enter-room' ).addEventListener( 'click', ( e ) => {
         e.preventDefault();
-
+        
         let name = document.querySelector( '#username' ).value;
 
         if ( name ) {
@@ -97,6 +96,8 @@ window.addEventListener( 'load', () => {
 
             //save the user's name in sessionStorage
             sessionStorage.setItem( 'username', name );
+
+           
 
             //reload room
             location.reload();

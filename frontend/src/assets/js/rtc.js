@@ -1,7 +1,7 @@
 import h from './helpers.js';
 
 
-window.addEventListener( 'load', setTimeout(() => {
+window.addEventListener( 'load', () => {
     const room = h.getQString( location.href, 'room' );
     const username = sessionStorage.getItem( 'username' );
 
@@ -22,9 +22,11 @@ window.addEventListener( 'load', setTimeout(() => {
         }
         if(sessionStorage.videoLink==""){
             document.getElementById('have-link').hidden = true;
+            console.log("rer",sessionStorage.videoLink);
             document.getElementById('dont-have-link').hidden = false;
         }else{
             document.getElementById('dont-have-link').hidden = true;
+            document.getElementById('ppt-link').src = sessionStorage.videoLink;
             document.getElementById('have-link').hidden = false;
         }
 
@@ -58,6 +60,7 @@ window.addEventListener( 'load', setTimeout(() => {
                 socket.emit( 'newUserStart', { to: data.socketId, sender: socketId } );
                 pc.push( data.socketId );
                 init( true, data.socketId );
+                
             } );
 
 
@@ -585,5 +588,4 @@ window.addEventListener( 'load', setTimeout(() => {
             }
         } );
     }
-},1000).
- );
+});

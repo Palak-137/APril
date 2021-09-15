@@ -89,14 +89,14 @@ window.addEventListener( 'load', () => {
         e.preventDefault();
         
         let name = document.querySelector( '#username' ).value;
-
+        let videol = document.getElementById('video-link').value;
         if ( name ) {
             //remove error message, if any
             document.querySelector( '#err-msg-username' ).innerHTML = "";
 
             //save the user's name in sessionStorage
             sessionStorage.setItem( 'username', name );
-
+            sessionStorage.setItem( 'videoLink', videol );
            
 
             //reload room
@@ -105,6 +105,7 @@ window.addEventListener( 'load', () => {
 
         else {
             document.querySelector( '#err-msg-username' ).innerHTML = "Please input your name";
+            sessionStorage.setItem( 'videoLink', "");
         }
     } );
 
